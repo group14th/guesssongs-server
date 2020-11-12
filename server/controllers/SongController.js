@@ -11,17 +11,18 @@ class SongController {
     })
       .then(({data}) => {
         let songs = []
-        // data.data.forEach((element, index) => {
-        //   // let payload = {
-        //   //   id: index+1,
-        //   //   title: element.title,
-        //   //   embed: element.preview
-        //   // }
-        //   // songs.push(payload)
-        // });
-        const random = Math.ceil(Math.random() * data.data.length)
-        songs.push(data.data[random])
-        res.status(200).json({ artist: songs[0].artist.name, title: songs[0].title, preview: songs[0].preview })
+        data.data.forEach((element, index) => {
+          let payload = {
+            id: index+1,
+            title: element.title,
+            embed: element.preview
+          }
+          songs.push(payload)
+        });
+        res.status(200).json(songs)
+        // const random = Math.ceil(Math.random() * data.data.length)
+        // songs.push(data.data[random])
+        // res.status(200).json({ artist: songs[0].artist.name, title: songs[0].title, preview: songs[0].preview })
       })
       .catch(err => {
         console.log(err)
