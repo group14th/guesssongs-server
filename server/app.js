@@ -28,6 +28,9 @@ io.on("connection", (socket) => {
     socket.on('get-onlineUsers', () => {
       socket.emit('update-onlineUsers', onlineUsers)
     })
+    socket.on('get-rooms', () => {
+      socket.emit('update-room', rooms)
+    })
 });
 
 http.listen(PORT, () => {
